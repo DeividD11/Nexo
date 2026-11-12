@@ -1,0 +1,17 @@
+# Local credentials and environment overrides
+.env
+.env.*
+!.env.example
+supabase/.env
+supabase/functions/.env
+
+# OS/editor artifacts
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Supabase production secret files
+supabase/.env.production
+supabase/.env.production.local
+!supabase/.env.production.example

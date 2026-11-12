@@ -1,0 +1,67 @@
+/* Mobile-first shell: one visible destination at a time on narrow screens. */
+.app-root { min-height: 100dvh; padding: 0; }
+.app-shell {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  width: 100%;
+  height: 100dvh;
+  min-height: 0;
+  margin: 0 auto;
+  overflow: hidden;
+  background: var(--surface);
+}
+.sidebar {
+  position: relative;
+  z-index: 2;
+  grid-column: 1;
+  grid-row: 1;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+}
+.chat-panel {
+  position: relative;
+  grid-column: 1;
+  grid-row: 1;
+  min-width: 0;
+  height: 100%;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--surface-2);
+}
+.app-shell.has-active-chat .sidebar { display: none; }
+.app-shell.has-active-chat .chat-panel { display: flex; }
+.details-panel {
+  position: absolute;
+  z-index: 12;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(340px, 88%);
+  min-width: 0;
+  display: none;
+  flex-direction: column;
+  padding: 25px 20px;
+  background: var(--surface);
+  border-left: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.details-scrim {
+  position: absolute;
+  z-index: 11;
+  inset: 0;
+  border: 0;
+  padding: 0;
+  background: rgba(9, 20, 17, .18);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.app-shell.details-open .details-panel { display: flex; }
+.chat-panel--empty { align-items: center; justify-content: center; }
+.chat-panel--active { background: var(--surface-2); }

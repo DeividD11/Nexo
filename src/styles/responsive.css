@@ -1,0 +1,107 @@
+/* Progressive enhancement: tablet */
+@media (min-width: 701px) {
+  :root { --sidebar-width: 316px; --details-width: 250px; }
+  .app-root { min-height: 100vh; padding: 14px; }
+  .app-shell {
+    grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+    width: min(1600px, 100%);
+    height: calc(100vh - 28px);
+    min-height: 580px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-soft);
+  }
+  .sidebar { height: auto; border-right: 1px solid var(--line); }
+  .app-shell.has-active-chat .sidebar { display: flex; }
+  .chat-panel { grid-column: 2; grid-row: 1; height: auto; display: flex; }
+  .app-shell.has-active-chat .chat-panel { display: flex; }
+  .details-close { display: inline-grid; }
+  .details-scrim { left: var(--sidebar-width); }
+}
+
+/* Compact sidebar toolbar for common tablet and 1024px laptop widths. */
+@media (min-width: 701px) and (max-width: 1180px) {
+  .sidebar__top { gap: 8px; padding: 18px 16px 14px; }
+  .sidebar__top > .brand-caption { display: none; }
+  .sidebar__top > .brand { flex: 0 0 auto; gap: 7px; font-size: 21px; }
+  .sidebar__top > .icon-button { width: 34px; height: 34px; flex: 0 0 34px; }
+  .sidebar-settings { margin-left: auto; }
+}
+
+/* Laptop and desktop: details remain an explicit, dismissible overlay. */
+@media (min-width: 961px) {
+  .app-shell { grid-template-columns: var(--sidebar-width) minmax(0, 1fr); }
+  .details-panel {
+    position: absolute;
+    grid-column: auto;
+    grid-row: auto;
+    width: min(var(--details-width), calc(100% - var(--sidebar-width)));
+    padding: 25px 20px;
+    border-left: 1px solid var(--line);
+    box-shadow: var(--shadow);
+  }
+  .details-scrim { left: var(--sidebar-width); }
+  .details-close { display: inline-grid; }
+}
+
+@media (min-width: 1181px) {
+  :root { --sidebar-width: 342px; --details-width: 278px; }
+  .app-root { padding: 22px; }
+  .app-shell { height: calc(100vh - 44px); min-height: 620px; }
+}
+
+/* Small-screen spacing and safe-area handling */
+@media (max-width: 700px) {
+  .sidebar__top { padding: max(19px, env(safe-area-inset-top)) 20px 13px; }
+  .sidebar-welcome { padding-inline: 20px; }
+  .conversation-search { margin-inline: 16px; }
+  .conversation-tabs { padding-inline: 20px; }
+  .conversation-list { padding-inline: 10px; }
+  .sidebar-footer { padding-bottom: max(13px, env(safe-area-inset-bottom)); }
+  .welcome-state { width: 100%; padding: 26px 20px; }
+  .welcome-art { transform: scale(.88); margin-top: -10px; margin-bottom: 5px; }
+  .welcome-state h2 { font-size: 32px; }
+  .chat-header { min-height: 72px; gap: 9px; padding: max(11px, env(safe-area-inset-top)) 13px 11px; }
+  .mobile-back { display: inline-grid; width: 34px; height: 36px; }
+  .chat-header .avatar { width: 40px; height: 40px; }
+  .chat-header .icon-button { width: 34px; }
+  .details-panel { width: min(360px, 94%); padding: 20px 17px; }
+  .details-scrim { left: 0; }
+  .message-history { padding: 18px 13px; }
+  .message-row { max-width: 88%; }
+  .composer { margin: 0 10px max(10px, env(safe-area-inset-bottom)); padding: 9px 9px 8px 12px; }
+  .composer__hint { display: none; }
+  .composer textarea { min-height: 34px; }
+  .modal-backdrop { position: fixed; padding: 12px; }
+  .modal-card { max-height: min(88dvh, 700px); border-radius: 19px; }
+  .toast-region { left:12px; right:12px; bottom:max(12px,env(safe-area-inset-bottom)); justify-items:center; }
+  .toast { width:min(100%,420px); max-width:100%; }
+  .toast--logout { top:max(12px,env(safe-area-inset-top)); bottom:auto; width:calc(100vw - 24px); }
+  .global-error { bottom: max(15px, env(safe-area-inset-bottom)); }
+}
+
+@media (max-width: 380px) {
+  .brand-caption { display: none; }
+  .sidebar__top { padding-inline: 16px; }
+  .sidebar-welcome { padding-inline: 16px; }
+  .conversation-search { margin-inline: 13px; }
+  .welcome-state h2 { font-size: 28px; }
+  .welcome-art { transform: scale(.78); margin-block: -17px -8px; }
+  .modal-header, .modal-content { padding-inline: 17px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+@media (min-width: 701px) and (max-height: 700px) {
+  .app-root { padding-block: 8px; }
+  .app-shell { height: calc(100dvh - 16px); min-height: 0; }
+  .sidebar__top { padding-block: 13px 10px; }
+  .sidebar-welcome { padding-block: 10px 12px; }
+}

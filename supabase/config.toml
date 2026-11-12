@@ -1,0 +1,40 @@
+# Configuración de Nexo para Supabase CLI v3.
+# El project_id apunta al proyecto existente. Los secretos nunca se almacenan aquí.
+project_id = "zyfjffvqcprfcohgdrxx"
+
+[api]
+enabled = true
+schemas = ["public", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+major_version = 17
+
+[functions.messenger-api]
+# Nexo usa tokens opacos propios, no JWT de Supabase Auth.
+# La Edge Function valida auth.session en servidor antes de cada acción privada.
+verify_jwt = false
+
+[storage]
+enabled = true
+file_size_limit = "10MiB"
+
+[storage.buckets.messenger-private]
+public = false
+file_size_limit = "10MiB"
+allowed_mime_types = [
+  "image/jpeg",
+  "image/png",
+  "image/webp",
+  "image/gif",
+  "application/pdf",
+  "text/plain",
+  "application/msword",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  "application/vnd.ms-excel",
+  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  "application/vnd.ms-powerpoint",
+  "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+  "application/zip",
+]
